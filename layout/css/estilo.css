@@ -1,0 +1,9 @@
+
+/* 
+    Created on : 20/10/2014, 15:59:45
+    Author     : MATHEUS
+*/
+
+@media screen and (orientation: portrait){.horizontal{display:none;} .vertical{display:block;}}
+@media screen and (orientation: landscape){.horizontal{display:block;} .vertical{display:none;}}
+
