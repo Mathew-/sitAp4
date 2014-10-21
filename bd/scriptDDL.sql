@@ -34,12 +34,13 @@ DROP TABLE IF EXISTS `mydb`.`Artigo` ;
 CREATE  TABLE IF NOT EXISTS `mydb`.`Artigo` (
   `idArtigo` INT NOT NULL AUTO_INCREMENT ,
   `titulo` VARCHAR(45) NOT NULL ,
-  `texto` VARCHAR(500) NOT NULL ,
-  `Usuario_idUsuario` INT NOT NULL ,
+  `texto` TEXT NOT NULL ,
   `Foto_idFoto` INT NOT NULL ,
+  `Usuario_idUsuario` INT NOT NULL ,
+  `data` DATETIME NULL ,
   PRIMARY KEY (`idArtigo`) ,
-  INDEX `fk_Artigo_Usuario` (`Usuario_idUsuario` ASC) ,
-  CONSTRAINT `fk_Artigo_Usuario`
+  INDEX `fk_Artigo_Usuario1` (`Usuario_idUsuario` ASC) ,
+  CONSTRAINT `fk_Artigo_Usuario1`
     FOREIGN KEY (`Usuario_idUsuario` )
     REFERENCES `mydb`.`Usuario` (`idUsuario` )
     ON DELETE NO ACTION
@@ -57,6 +58,7 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`Comentario` (
   `comentario` VARCHAR(100) NOT NULL ,
   `Usuario_idUsuario` INT NOT NULL ,
   `Artigo_idArtigo` INT NOT NULL ,
+  `data` DATETIME NULL ,
   PRIMARY KEY (`idComentario`) ,
   INDEX `fk_Comentario_Usuario1` (`Usuario_idUsuario` ASC) ,
   INDEX `fk_Comentario_Artigo1` (`Artigo_idArtigo` ASC) ,
