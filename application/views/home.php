@@ -10,18 +10,18 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/skel.min.js"></script>
-		<script src="js/skel-layers.min.js"></script>
-		<script src="js/init.js"></script>
+		<!--[if lte IE 8]><script src="<?php echo base_url(); ?>assets/css/ie/html5shiv.js"></script><![endif]-->
+		<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
+		<script src="<?php echo base_url(); ?>assets/js/skel.min.js"></script>
+		<script src="<?php echo base_url(); ?>assets/js/skel-layers.min.js"></script>
+		<script src="<?php echo base_url(); ?>assets/js/init.js"></script>
 		<noscript>
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-desktop.css" />
-			<link rel="stylesheet" href="css/style-wide.css" />
+			<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/skel.css" />
+			<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css" />
+			<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style-desktop.css" />
+			<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style-wide.css" />
 		</noscript>
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/ie/v8.css" /><![endif]-->
 	</head>
 	<!--
 		Note: Set the body element's class to "left-sidebar" to position the sidebar on the left.
@@ -67,7 +67,7 @@
 											<li><a href="#" class="icon fa-facebook">128</a></li>
 										</ul>
 									</div>
-									<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+									<a href="#" class="image featured"><img src="<?php echo base_url(); ?>assets/images/pic01.jpg" alt="" /></a>
 									<p>
 										<strong>Hello!</strong> You're looking at <strong>Striped</strong>, a fully responsive HTML5 site template designed by <a href="http://n33.co">AJ</a>
 										for <a href="http://html5up.net">HTML5 UP</a> It features a clean, minimalistic design, styling for all basic page elements (including blockquotes, tables and lists), a
@@ -95,7 +95,7 @@
 											<li><a href="#" class="icon fa-facebook">128</a></li>
 										</ul>
 									</div>
-									<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+									<a href="#" class="image featured"><img src="<?php echo base_url(); ?>assets/images/pic02.jpg" alt="" /></a>
 									<p>
 										Quisque vel sapien sit amet tellus elementum ultricies. Nunc vel orci turpis. Donec id malesuada metus. 
 										Nunc nulla velit, fermentum quis interdum quis, tate etiam commodo lorem ipsum dolor sit amet dolore. 

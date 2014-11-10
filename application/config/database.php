@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost:3307';
+$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = 'mysql';
+$db['default']['password'] = '';
 $db['default']['database'] = 'sitap';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
