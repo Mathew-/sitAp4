@@ -11,9 +11,38 @@
         <label for="nome">Nome:</label><br/>
         <input type="text" name="nome" value="<?php echo set_value('nome'); ?>"/>
         <div class="error"><?php echo form_error('nome'); ?></div>
+        
         <label for="email">Email:</label><br/>
         <input type="text" name="email" value="<?php echo set_value('email'); ?>"/>
         <div class="error"><?php echo form_error('email'); ?></div>
+    
+    <label for="senha">Senha:</label><br/>
+    <input type="password" name="senha" min="6" max="16" value="<?php echo set_value('senha'); ?>"/>
+    <div class="error"><?php echo form_error('senha'); ?></div>
+    
+    <label for="sexo">Sexo:</label>
+    <input type="text" name="sexo" value="<?php echo set_value('sexo'); ?>" />
+    <div class="error"><?php echo form_error('sexo'); ?></div>
+    
+    <label for="cidade">Cidade:</label><br/>
+    <input type="text" name="cidade" value="<?php echo set_value('cidade'); ?>"/>
+    <div class="error"><?php echo form_error('cidade'); ?></div>
+    
+    <label for="estado">Estado:</label><br/>
+    <input type="text" name="estado" value="<?php echo set_value('estado'); ?>"/>
+    <div class="error"><?php echo form_error('estado'); ?></div>
+    
+    <label for="endereco">Endereço:</label><br/>
+    <input type="text" name="endereco" value="<?php echo set_value('endereco'); ?>"/>
+    <div class="error"><?php echo form_error('endereco'); ?></div>
+    
+    <label for="cep">CEP:</label><br/>
+    <input type="cep" name="cep" value="<?php echo set_value('cep'); ?>"/>
+    <div class="error"><?php echo form_error('cep'); ?></div>
+    
+    <label for="foto">URL da Foto:</label><br/>
+    <input type="text" name="foto" value="<?php echo set_value('foto'); ?>"/>
+    <div class="error"><?php echo form_error('foto'); ?></div>
         <input type="submit" name="cadastrar" value="Cadastrar" />
 
         <?php echo form_close(); ?>
@@ -27,7 +56,9 @@
                         <img src="<?php echo base_url(); ?>assets/images/lixo.png" />
                         </a>
                         <span> - </span>
-                        <a title="Editar" href="<?php echo base_url() . 'usuarios/editar/' . $usuario->idusuario; ?>"><?php echo $usuario->nome; ?></a>
+                        <a title="Editar" href="<?php echo base_url() . 'usuarios/editar/' . $usuario->idusuario; ?>"><img src="<?php echo base_url(); ?>assets/images/ico_editar.gif" /></a>
+                        <span> - </span>
+                        <span><?php echo $usuario->nome; ?></span>
                         <span> - </span>
                         <span><?php echo $usuario->email; ?></span>
                         <span> - </span>
