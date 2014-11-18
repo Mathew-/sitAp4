@@ -6,7 +6,6 @@ class VerifyLogin extends CI_Controller {
  {
    parent::__construct();
    $this->load->model('usuarios_model','',TRUE);
- 
  }
 
  function index()
@@ -20,7 +19,9 @@ class VerifyLogin extends CI_Controller {
    if($this->form_validation->run() == FALSE)
    {
      //Field validation failed.  User redirected to login page
-     $this->load->view('login_view');
+     
+       $this->load->view('login_view');
+     
      
    }
    else
@@ -54,7 +55,9 @@ class VerifyLogin extends CI_Controller {
    }
    else
    {
+      
      $this->form_validation->set_message('check_database', 'E-mail ou senha inválidos');
+      
      return false;
    }
  }

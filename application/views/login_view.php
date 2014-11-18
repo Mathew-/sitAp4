@@ -2,13 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
    <title> Login </title>
+   
  </head>
  <body>    
  
-   <?php echo validation_errors(); ?>
-   <?php echo form_open('verifylogin'); ?>  
- <?php $this->load->view('home_header');?>   
-   <?php  $this->load->view('home_sidebar');?>
+   <?php echo validation_errors(); ?> 
+ 
    <!-- Content -->
 <div id="content">
     <div class="inner">
@@ -47,7 +46,7 @@
                 -->
             </div><!-- info -->
 
-           <form>
+       <?php echo form_open('verifylogin') ?>
      <label for="username">E-mail:</label>
      <input type="text" size="20" id="username" name="username"/>
      <br/>
@@ -55,7 +54,7 @@
      <input type="password" size="20" id="passowrd" name="password"/>
      <br/>
      <input type="submit" value="Login"/>
-   </form>
+  <?php echo form_close() ?>
 
         </article>
 
