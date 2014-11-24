@@ -30,13 +30,11 @@ class Login extends CI_Controller {
 
             if ($query) { // VERIFICA LOGIN E SENHA
                 $data = array(
-                    'email' => $this->input->post('username'),
+                    'email' => $this->input->post('email'),
                     'logado' => true
                 );
                 $this->session->set_userdata($data);
-                echo "[DEBUG] LOGOUUU";
-                echo "<a href='".base_url('login/sair')."'>Sair</a>";
-                die();
+               redirect('noticias');
                 //redirect('login/area_restrita');
             } else {
          
