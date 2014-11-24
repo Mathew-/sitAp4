@@ -10,7 +10,7 @@
                         if they get too long. You can also remove the <p> entirely if you don't
                         need a subtitle.
                 -->
-                <h2><a href="#">Cadastro de Usuário</a></h2>
+                <h2><a href="#">Alteração de Cadastro de Usuário</a></h2>
                <!-- <p>A free, fully responsive HTML5 site template by HTML5 UP</p> -->
             </header>
             <div class="info">
@@ -36,82 +36,49 @@
                 -->
             </div><!-- info -->
 
-            <?php echo form_open('usuarios/inserir', 'id="form-pessoas"'); ?>
+            <?php echo form_open('usuarios/atualizar', 'id="form-pessoas"'); ?>
+
+            <input type="hidden" name="idusuario" value="<?php echo $dados_usuario[0]->idusuario; ?>"/>
 
             <label for="nome">Nome:</label><br/>
-            <input type="text" name="nome" value="<?php echo set_value('nome'); ?>"/>
+            <input type="text" name="nome" value="<?php echo $dados_usuario[0]->nome; ?>"/>
             <div class="error"><?php echo form_error('nome'); ?></div>
 
-            <label for="email">E-mail:</label><br/>
-            <input type="text" name="email" value="<?php echo set_value('email'); ?>"/>
+            <label for="email">Email:</label><br/>
+            <input type="text" name="email" value="<?php echo $dados_usuario[0]->email; ?>"/>
             <div class="error"><?php echo form_error('email'); ?></div>
 
             <label for="senha">Senha:</label><br/>
-            <input type="password" name="senha" value="<?php echo set_value('senha'); ?>"/>
+            <input type="text" name="senha" value="<?php echo $dados_usuario[0]->senha; ?>"/>
             <div class="error"><?php echo form_error('senha'); ?></div>
 
             <label for="sexo">Sexo:</label><br/>
-            <input type="text" name="sexo" value="<?php echo set_value('sexo'); ?>"/>
+            <input type="text" name="sexo" value="<?php echo $dados_usuario[0]->sexo; ?>"/>
             <div class="error"><?php echo form_error('sexo'); ?></div>
 
             <label for="endereco">Endereço:</label><br/>
-            <input type="text" name="endereco" value="<?php echo set_value('endereco'); ?>"/>
+            <input type="text" name="endereco" value="<?php echo $dados_usuario[0]->endereco; ?>"/>
             <div class="error"><?php echo form_error('endereco'); ?></div>
 
             <label for="cidade">Cidade:</label><br/>
-            <input type="text" name="cidade" value="<?php echo set_value('cidade'); ?>"/>
+            <input type="text" name="cidade" value="<?php echo $dados_usuario[0]->cidade; ?>"/>
             <div class="error"><?php echo form_error('cidade'); ?></div>
 
             <label for="estado">Estado:</label><br/>
-            <input type="text" name="estado" value="<?php echo set_value('estado'); ?>"/>
+            <input type="text" name="estado" value="<?php echo $dados_usuario[0]->estado; ?>"/>
             <div class="error"><?php echo form_error('estado'); ?></div>
 
             <label for="cep">CEP:</label><br/>
-            <input type="text" name="cep" value="<?php echo set_value('cep'); ?>"/>
+            <input type="text" name="cep" value="<?php echo $dados_usuario[0]->cep; ?>"/>
             <div class="error"><?php echo form_error('cep'); ?></div>
 
             <label for="foto">Foto:</label><br/>
-            <input type="text" name="foto" value="<?php echo set_value('foto'); ?>"/>
+            <input type="text" name="foto" value="<?php echo $dados_usuario[0]->foto; ?>"/>
             <div class="error"><?php echo form_error('foto'); ?></div>
 
-            <input type="submit" name="cadastrar" value="Cadastrar" />
+            <input type="submit" name="atualizar" value="Atualizar" />
 
             <?php echo form_close(); ?>
-
-            <!-- Lista as Pessoas Cadastradas -->
-            <div id="grid-pessoas">
-                <ul>
-                    <?php foreach ($usuarios as $usuario): ?>
-                        <li>
-                            <a title="Deletar" href="<?php echo base_url() . 'usuarios/deletar/' . $usuario->idusuario; ?>" onclick="return confirm('Confirma a exclusão deste registro?')">
-                                <img src="<?php echo base_url(); ?>assets/images/lixo.png" />
-                            </a>
-                            <span> - </span>
-                            <a title="Editar" href="<?php echo base_url() . 'usuarios/editar/' . $usuario->idusuario; ?>">
-                                <?php echo $usuario->nome; ?></a>
-                            <span> - </span>
-                            <span><?php echo $usuario->email; ?></span>
-                            <span> - </span>
-                            <span><?php echo $usuario->senha; ?></span>
-                            <span> - </span>
-                            <span><?php echo $usuario->sexo; ?></span>
-                            <span> - </span>
-                            <span><?php echo $usuario->cidade; ?></span>
-                            <span> - </span>
-                            <span><?php echo $usuario->estado; ?></span>
-                            <span> - </span>
-                            <span><?php echo $usuario->endereco; ?></span>
-                            <span> - </span>
-                            <span><?php echo $usuario->cep; ?></span>
-                            <span> - </span>
-                            <span> <img src="<?php echo base_url(); ?>assets/images/<?php echo $usuario->foto; ?>" />
-                            </span>                        
-                        </li>
-                    <?php endforeach ?>
-                </ul>
-            </div>
-            <!-- Fim Lista -->
-
 
         </article>
 

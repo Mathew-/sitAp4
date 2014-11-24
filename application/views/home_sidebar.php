@@ -1,7 +1,3 @@
-
-
-
-
 <!-- Sidebar -->
 <div id="sidebar">
 
@@ -12,7 +8,7 @@
     <nav id="nav">
         <ul>
             <li class="current"><a href="#">Latest Post</a></li>
-            <li><a href="#">Cadastro de Usuário</a></li>
+            <li><a href="<?php echo base_url('usuarios'); ?>">Cadastro de Usuário</a></li>
             <li><a href="#">About Me</a></li>
             <li><a href="#">Contact Me</a></li>
         </ul>

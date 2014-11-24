@@ -14,9 +14,13 @@ class Usuarios extends CI_Controller {
     }
 
     function index() {
-        $data['titulo'] = "CRUD com CodeIgniter | Cadastro de Usuários";
+//        $data['titulo'] = "CRUD com CodeIgniter | Cadastro de Usuários";
         $data['usuarios'] = $this->usuarios_model->listar();
-        $this->load->view('usuarios_view.php', $data);
+//        $this->load->view('usuarios_view.php', $data);
+
+        $this->load->view('home_header');
+        $this->load->view('home_content_usuario',$data);
+        $this->load->view('home_sidebar');
     }
 
     /**
@@ -38,13 +42,6 @@ class Usuarios extends CI_Controller {
         /* Define as regras para validação */
         $this->form_validation->set_rules('nome', 'Nome', 'required|max_length[40]');
         $this->form_validation->set_rules('email', 'E-mail', 'trim|required|valid_email|max_length[100]');
-        $this->form_validation->set_rules('senha', 'Senha', 'required|min_length[6]|max_length[16]');
-        $this->form_validation->set_rules('sexo', 'Sexo', 'required|min_length[1]|max_length[1]');
-        $this->form_validation->set_rules('cidade', 'Cidade', 'required|min_length[0]|max_length[45]');
-        $this->form_validation->set_rules('estado', 'Estado', 'required|min_length[2]|max_length[2]');
-        $this->form_validation->set_rules('endereco', 'Endereço', 'required|min_length[6]|max_length[45]');
-        $this->form_validation->set_rules('cep', 'CEP', 'required|min_length[8]|max_length[8]');
-        $this->form_validation->set_rules('foto', 'URL da Foto', 'required|min_length[6]|max_length[45]');
 
         /* Executa a validação e caso houver erro... */
         if ($this->form_validation->run() === FALSE) {
@@ -53,16 +50,20 @@ class Usuarios extends CI_Controller {
             /* Senão, caso sucesso na validação... */
         } else {
             /* Recebe os dados do formulário (visão) */
+            /**
+             * É criado o array $data com os nomes dos campos
+             * presentes no Banco de dados e então são preenchidos
+             * coms os valores vindo do formulário através dp POST
+             */
             $data['nome'] = $this->input->post('nome');
             $data['email'] = $this->input->post('email');
             $data['senha'] = $this->input->post('senha');
             $data['sexo'] = $this->input->post('sexo');
+            $data['endereco'] = $this->input->post('endereco');
             $data['cidade'] = $this->input->post('cidade');
             $data['estado'] = $this->input->post('estado');
-            $data['endereco'] = $this->input->post('endereco');
             $data['cep'] = $this->input->post('cep');
             $data['foto'] = $this->input->post('foto');
-
 
             /**
              * TODO: Deve colocar mais campos!!!
@@ -72,7 +73,7 @@ class Usuarios extends CI_Controller {
 
             /* Chama a função inserir do modelo */
             if ($this->usuarios_model->inserir($data)) {
-                redirect('Usuarios');
+                redirect('usuarios');
             } else {
                 log_message('error', 'Erro ao inserir o usuário.');
             }
@@ -80,9 +81,9 @@ class Usuarios extends CI_Controller {
     }
 
     function editar($idusuario) {
-
+        
         /* Aqui vamos definir o título da página de edição */
-        $data['titulo'] = "CRUD com CodeIgniter | Editar Usuário";
+        //$data['titulo'] = "CRUD com CodeIgniter | Editar Usuário";
 
         /* Carrega o modelo */
         //$this->load->model('pessoas_model');
@@ -91,7 +92,9 @@ class Usuarios extends CI_Controller {
         $data['dados_usuario'] = $this->usuarios_model->editar($idusuario);
 
         /* Carrega a página de edição com os dados da pessoa */
-        $this->load->view('usuarios_edit', $data);
+        $this->load->view('home_header');
+        $this->load->view('home_content_usuario_edit',$data);
+        $this->load->view('home_sidebar');
     }
 
     function atualizar() {
@@ -114,41 +117,6 @@ class Usuarios extends CI_Controller {
                 'field' => 'email',
                 'label' => 'E-mail',
                 'rules' => 'trim|required|valid_email|max_length[100]'
-            ),
-            array(
-                'field' => 'senha',
-                'label' => 'Senha',
-                'rules' => 'required|min_length[6]|max_length[16]'
-            ),
-            array(
-                'field' => 'sexo',
-                'label' => 'Sexo',
-                'rules' => 'required|min_length[1]|max_length[1]'
-            ),
-            array(
-                'field' => 'cidade',
-                'label' => 'Cidade',
-                'rules' => 'required|min_length[4]|max_length[45]'
-            ),
-            array(
-                'field' => 'estado',
-                'label' => 'Estado',
-                'rules' => 'required|min_length[2]|max_length[2]'
-            ),
-            array(
-                'field' => 'endereco',
-                'label' => 'Endereco',
-                'rules' => 'required|min_length[4]|max_length[45]'
-            ),
-            array(
-                'field' => 'cep',
-                'label' => 'CEP',
-                'rules' => 'required|min_length[8]|max_length[8]'
-            ),
-            array(
-                'field' => 'foto',
-                'label' => 'Foto',
-                'rules' => 'required|min_length[4]|max_length[45]'
             )
         );
         $this->form_validation->set_rules($validations);
@@ -164,10 +132,10 @@ class Usuarios extends CI_Controller {
             $data['email'] = strtolower($this->input->post('email'));
             $data['senha'] = $this->input->post('senha');
             $data['sexo'] = $this->input->post('sexo');
+            $data['endereco'] = $this->input->post('endereco');
             $data['cidade'] = $this->input->post('cidade');
             $data['estado'] = $this->input->post('estado');
-            $data['endereco'] = $this->input->post('endereco');
-            $data['cep']= $this->input->post('cep');
+            $data['cep'] = $this->input->post('cep');
             $data['foto'] = $this->input->post('foto');
 
             /**
@@ -182,7 +150,7 @@ class Usuarios extends CI_Controller {
                 redirect('usuarios');
             } else {
                 /* Senão exibe a mensagem de erro */
-                log_message('error', 'Erro ao atualizar o usuário.');
+                log_message('error', 'Erro ao atualizar o usuario.');
             }
         }
     }
@@ -198,7 +166,7 @@ class Usuarios extends CI_Controller {
             redirect('usuarios');
         } else {
             /* Senão exibe a mensagem de erro */
-            log_message('error', 'Erro ao deletar o usuário.');
+            log_message('error', 'Erro ao deletar o usuario.');
         }
     }
 
