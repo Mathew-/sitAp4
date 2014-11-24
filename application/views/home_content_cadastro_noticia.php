@@ -10,10 +10,12 @@
                         if they get too long. You can also remove the <p> entirely if you don't
                         need a subtitle.
                 -->
-                <h2><a href="#">Sistema de Login</a></h2>
+                <h2><a href="#">Cadastro de Notícia</a></h2>
                <!-- <p>A free, fully responsive HTML5 site template by HTML5 UP</p> -->
             </header>
             <div class="info">
+                <p>Abaixo vai o formulário de notícia</p>
+                <p><a href="<?= base_url('login/sair') ?>">Sair</a></p>
                 <!--
                         Note: The date should be formatted exactly as it's shown below. In particular, the
                         "least significant" characters of the month should be encapsulated in a <span>
