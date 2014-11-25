@@ -19,12 +19,8 @@ class Login_model extends CI_Model {
         $logado = $this->session->userdata('logado');
 
         if (!isset($logado) || $logado != true) {
-            return false;
-            
-        }
-        else
-        {
-           return true; 
+            echo 'Voce nao tem permissao para entrar nessa pagina. <a href="http://127.0.0.1/sitApTecVesp2014/index.php/login">Efetuar Login</a>';
+            die();
         }
     }
 }
