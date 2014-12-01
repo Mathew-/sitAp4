@@ -37,7 +37,7 @@ class Login extends CI_Controller {
                     'logado' => true
                 );
                 $this->session->set_userdata($data);
-                redirect('noticias');
+                redirect('noticias/cadastro');
             } else {
                 //Looping
                 //echo "[DEBUG]: Não Logou!<br>";  

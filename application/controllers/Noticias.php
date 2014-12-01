@@ -11,7 +11,7 @@ class Noticias extends CI_Controller {
         
     }
     
-    public function index() {
+    public function cadastro() {
         
         if($this->login->logado()){
         //$this->load->view('login/area_restrita_view');
