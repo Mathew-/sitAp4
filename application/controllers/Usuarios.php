@@ -62,28 +62,25 @@ class Usuarios extends CI_Controller {
             $data['endereco'] = $this->input->post('endereco');
             $data['cidade'] = $this->input->post('cidade');
             $data['estado'] = $this->input->post('estado');
-            $data['cep'] = $this->input->post('cep');            
-             $data['foto'] = $this->do_upload();
+            $data['cep'] = $this->input->post('cep');
+            $data['foto'] = $this->do_upload();
 
-            /**
-             *  Envio da imagem
-             */
-           
-                //fim do envio da imagem
+            /* Carrega o modelo */
+            //$this->load->model('pessoas_model');
 
-                /* Carrega o modelo */
-                //$this->load->model('pessoas_model');
-
-                /* Chama a função inserir do modelo */
-                if ($this->usuarios_model->inserir($data)) {
-                    redirect('usuarios');
-                } else {
-                    log_message('error', 'Erro ao inserir o usuário.');
-                }
+            /* Chama a função inserir do modelo */
+            if ($this->usuarios_model->inserir($data)) {
+                redirect('usuarios');
+            } else {
+                log_message('error', 'Erro ao inserir o usuário.');
             }
         }
-
-        function do_upload(){
+    }
+    
+        function do_upload() {
+        /**
+             * Envio da imagem!
+             */
             $config['upload_path'] = './assets/images/';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '1000';
@@ -93,117 +90,136 @@ class Usuarios extends CI_Controller {
             $this->load->library('upload', $config);
 
             if (!$this->upload->do_upload()) {
-//                $error = array('error' => $this->upload->display_errors());
-//
-//                $this->load->view('upload_form', $error);
-//                $this->load->view('upload_success', $data);
-//                $this->load->view('home_header');
-//                $this->load->view('home_content_usuario', $data);
-//                $this->load->view('home_sidebar');
-                
-                return 'invalido';
-            } else {
-                //$data = array('upload_data' => $this->upload->data());
-                $foto = $this->upload->data();
-             return $foto['file_name'];
-            
-        }
+                $error = array('error' => $this->upload->display_errors());
 
-
-        function editar($idusuario) {
-
-            /* Aqui vamos definir o título da página de edição */
-            //$data['titulo'] = "CRUD com CodeIgniter | Editar Usuário";
-
-            /* Carrega o modelo */
-            //$this->load->model('pessoas_model');
-
-            /* Busca os dados da pessoa que será editada (id) */
-            $data['dados_usuario'] = $this->usuarios_model->editar($idusuario);
-
-            /* Carrega a página de edição com os dados da pessoa */
-            $this->load->view('home_header');
-            $this->load->view('home_content_usuario_edit', $data);
-            $this->load->view('home_sidebar');
-        }
-
-        function atualizar() {
-
-            /* Carrega a biblioteca do CodeIgniter responsável pela validação dos formulários */
-            //$this->load->library('form_validation');
-
-            /* Define as tags onde a mensagem de erro será exibida na página */
-            $this->form_validation->set_error_delimiters('<span>', '</span>');
-
-            /* Aqui estou definindo as regras de validação do formulário, assim como 
-              na função inserir do controlador, porém estou mudando a forma de escrita */
-            $validations = array(
-                array(
-                    'field' => 'nome',
-                    'label' => 'Nome',
-                    'rules' => 'trim|required|max_length[40]'
-                ),
-                array(
-                    'field' => 'email',
-                    'label' => 'E-mail',
-                    'rules' => 'trim|required|valid_email|max_length[100]'
-                )
-            );
-            $this->form_validation->set_rules($validations);
-
-            /* Executa a validação... */
-            if ($this->form_validation->run() === FALSE) {
-                /* Caso houver erro chama função editar do controlador novamente */
-                $this->editar($this->input->post('idusuario'));
-            } else {
-                /* Senão obtém os dados do formulário */
-                $data['idusuario'] = $this->input->post('idusuario');
-                $data['nome'] = ucwords($this->input->post('nome'));
-                $data['email'] = strtolower($this->input->post('email'));
-                $data['senha'] = $this->input->post('senha');
-                $data['sexo'] = $this->input->post('sexo');
-                $data['endereco'] = $this->input->post('endereco');
-                $data['cidade'] = $this->input->post('cidade');
-                $data['estado'] = $this->input->post('estado');
-                $data['cep'] = $this->input->post('cep');
-                $data['foto'] = $this->input->post('foto');
-
-                /**
-                 * TODO: Colocar mais campos
+                /**echo "[DEBUG]: Deu ruim total"; 
+                echo "<pre>";
+                echo "ERROR:";
+                var_dump($error);
+                var_dump($data);
+                echo "</pre>";
+                 * 
                  */
-                /* Carrega o modelo */
-                //$this->load->model('pessoas_model');
-
-                /* Executa a função atualizar do modelo passando como parâmetro os dados obtidos do formulário */
-                if ($this->usuarios_model->atualizar($data)) {
-                    /* Caso sucesso ao atualizar, recarrega a página principal */
-                    redirect('usuarios');
-                } else {
-                    /* Senão exibe a mensagem de erro */
-                    log_message('error', 'Erro ao atualizar o usuario.');
-                }
+                //die();
+                
+                //$this->load->view('upload_form', $error);
+                
+                //$this->load->view('home_header');
+                //$this->load->view('home_content_usuario', $data);
+                //$this->load->view('home_sidebar');
+               
+                //Arquivo inválido
+                //echo "Cheguei aqui Arquivo inválido!"; die();
+                return false;
+                
+            } else {//Arquivo enviado!
+                
+                //$data = array('upload_data' => $this->upload->data());
+                //$this->load->view('upload_success', $data);
+                
+                $foto = $this->upload->data();
+                //var_dump($foto); die();
+                return $foto['file_name'];
             }
-        }
+            //Fim do envio da imagem
+    }
 
-        function deletar($idusuario) {
+    function editar($idusuario) {
 
+        /* Aqui vamos definir o título da página de edição */
+        //$data['titulo'] = "CRUD com CodeIgniter | Editar Usuário";
+
+        /* Carrega o modelo */
+        //$this->load->model('pessoas_model');
+
+        /* Busca os dados da pessoa que será editada (id) */
+        $data['dados_usuario'] = $this->usuarios_model->editar($idusuario);
+
+        /* Carrega a página de edição com os dados da pessoa */
+        $this->load->view('home_header');
+        $this->load->view('home_content_usuario_edit', $data);
+        $this->load->view('home_sidebar');
+    }
+
+    function atualizar() {
+
+        /* Carrega a biblioteca do CodeIgniter responsável pela validação dos formulários */
+        //$this->load->library('form_validation');
+
+        /* Define as tags onde a mensagem de erro será exibida na página */
+        $this->form_validation->set_error_delimiters('<span>', '</span>');
+
+        /* Aqui estou definindo as regras de validação do formulário, assim como 
+          na função inserir do controlador, porém estou mudando a forma de escrita */
+        $validations = array(
+            array(
+                'field' => 'nome',
+                'label' => 'Nome',
+                'rules' => 'trim|required|max_length[40]'
+            ),
+            array(
+                'field' => 'email',
+                'label' => 'E-mail',
+                'rules' => 'trim|required|valid_email|max_length[100]'
+            )
+        );
+        $this->form_validation->set_rules($validations);
+
+        /* Executa a validação... */
+        if ($this->form_validation->run() === FALSE) {
+            /* Caso houver erro chama função editar do controlador novamente */
+            $this->editar($this->input->post('idusuario'));
+        } else {
+            /* Senão obtém os dados do formulário */
+            $data['idusuario'] = $this->input->post('idusuario');
+            $data['nome'] = ucwords($this->input->post('nome'));
+            $data['email'] = strtolower($this->input->post('email'));
+            $data['senha'] = $this->input->post('senha');
+            $data['sexo'] = $this->input->post('sexo');
+            $data['endereco'] = $this->input->post('endereco');
+            $data['cidade'] = $this->input->post('cidade');
+            $data['estado'] = $this->input->post('estado');
+            $data['cep'] = $this->input->post('cep');
+            //$data['foto'] = $this->input->post('foto');
+            
+            if($this->do_upload())
+                $data['foto'] = $this->do_upload ();
+            
+           
+
+            /**
+             * TODO: Colocar mais campos
+             */
             /* Carrega o modelo */
             //$this->load->model('pessoas_model');
 
-            /* Executa a função deletar do modelo passando como parâmetro o id da pessoa */
-            if ($this->usuarios_model->deletar($idusuario)) {
+            /* Executa a função atualizar do modelo passando como parâmetro os dados obtidos do formulário */
+            if ($this->usuarios_model->atualizar($data)) {
                 /* Caso sucesso ao atualizar, recarrega a página principal */
                 redirect('usuarios');
             } else {
                 /* Senão exibe a mensagem de erro */
-                log_message('error', 'Erro ao deletar o usuario.');
+                log_message('error', 'Erro ao atualizar o usuario.');
             }
         }
+    }
 
+    function deletar($idusuario) {
+
+        /* Carrega o modelo */
+        //$this->load->model('pessoas_model');
+
+        /* Executa a função deletar do modelo passando como parâmetro o id da pessoa */
+        if ($this->usuarios_model->deletar($idusuario)) {
+            /* Caso sucesso ao atualizar, recarrega a página principal */
+            redirect('usuarios');
+        } else {
+            /* Senão exibe a mensagem de erro */
+            log_message('error', 'Erro ao deletar o usuario.');
+        }
     }
 
 }
 
 /* End of file usuarios.php */
 /* Location: ./application/controllers/usuarios.php */
-

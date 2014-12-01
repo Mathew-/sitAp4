@@ -1,9 +1,13 @@
 <?php
+
 class Login_model extends CI_Model {
 
     # VALIDA USUÁRIO
     function validar() {
         $this->db->where('email', $this->input->post('email')); 
+        //$this->db->where('senha', md5($this->input->post('senha')));
+        
+        //TODO: Ativar o MD5
         $this->db->where('senha', $this->input->post('senha'));
         
 
@@ -19,8 +23,12 @@ class Login_model extends CI_Model {
         $logado = $this->session->userdata('logado');
 
         if (!isset($logado) || $logado != true) {
-            echo 'Voce nao tem permissao para entrar nessa pagina. <a href="http://127.0.0.1/sitApTecVesp2014/index.php/login">Efetuar Login</a>';
-            die();
+            return false; //Deu mó ruim
+        }
+        else{
+            return true;//Deu bom
         }
     }
 }
+
+

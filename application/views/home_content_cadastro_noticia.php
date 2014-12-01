@@ -14,7 +14,7 @@
                <!-- <p>A free, fully responsive HTML5 site template by HTML5 UP</p> -->
             </header>
             <div class="info">
-                <p>Abaixo vai o formulário de notícia</p>
+                <p>Abaixo vai o formulário de cadastro de notícia</p>
                 <p><a href="<?= base_url('login/sair') ?>">Sair</a></p>
                 <!--
                         Note: The date should be formatted exactly as it's shown below. In particular, the
@@ -40,22 +40,17 @@
 
             <?php echo form_open('login', 'id="form-login"'); ?>
 
-            
+            <label for="email">E-mail:</label><br/>
+            <input type="text" name="email" value="<?php echo set_value('email'); ?>"/>
+            <div class="error"><?php echo form_error('email'); ?></div>
 
-            <label for="titulo">Título:</label><br/>
-            <input type="text" name="título" value="<?php echo set_value('titulo'); ?>"/>
-            <div class="error"><?php echo form_error('titulo'); ?></div>
-
-            <label for="corpo">Corpo:</label><br/>
-            <input type="text" name="corpo" value="<?php echo set_value('corpo'); ?>"/>
-            <div class="error"><?php echo form_error('corpo'); ?></div>
-
-            
-            
-           <input type="submit" name="cadastrar" value="Cadastrar" />
+            <label for="senha">Senha:</label><br/>
+            <input type="password" name="senha" value="<?php echo set_value('senha'); ?>"/>
+            <div class="error"><?php echo form_error('senha'); ?></div>
+                    
+            <input type="submit" name="login" value="Login" />
 
             <?php echo form_close(); ?>
-
             
 
         </article>

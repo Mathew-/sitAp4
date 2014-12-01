@@ -73,9 +73,11 @@
             <div class="error"><?php echo form_error('cep'); ?></div>
 
             <label for="foto">Foto:</label><br/>
-            <input type="text" name="foto" value=""/>
+            <input type="file" name="userfile" value=""/>
             <div class="error"><?php echo form_error('foto'); ?></div>
-            <img src="<?php echo base_url("assets/images/") . $dados_usuario[0]->foto; ?>">
+            
+            <img src="<?php echo base_url("assets/images/" . $dados_usuario[0]->foto); ?>" />
+
             <input type="submit" name="atualizar" value="Atualizar" />
 
             <?php echo form_close(); ?>
